@@ -48,28 +48,7 @@ int main ()
 	struct Color text = COLOR_RGB_FG(50, 200, 150);
 	struct Color box  = COLOR_BOLD_RGB_FG(255, 100, 255);
 
-	printf(SETUP);
-	printf(REFRESH);
-
-	sboxNum("Moon\nDesert\nDoxy\n", text, box);
-
-	cirText("Usage:\nW: up\nS: down\nQ: Quit\nEnter: Select\nPress anything to continue.\n", box, text);
-
-	keypress();
-
-	char* op = options("Moon\nDesert\nDoxy\n", text, box);
-
-
-	printf(REFRESH);
-
-	scolor(text);
-	printf("%s\n", op);
-
-	free(op);
-
-	printf("Good By.\n");
-
-	printf(RESET);
+	cirLabel("tejiojoist", "text", box, text);
 
 	return 0;
 }

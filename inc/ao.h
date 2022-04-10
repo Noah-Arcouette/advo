@@ -62,6 +62,10 @@ void cirNum  (char*, struct Color, struct Color);
 
 void line (char*, size_t, struct Color, struct Color);
 
+void boxLabel  (char*, char*, struct Color, struct Color);
+void sboxLabel (char*, char*, struct Color, struct Color);
+void cirLabel  (char*, char*, struct Color, struct Color);
+
 #ifdef __linux__
 	int keypress ();
 	char* options (char*, struct Color, struct Color);

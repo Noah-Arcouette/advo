@@ -10,7 +10,7 @@ all: ${OUT}
 ${OUT}: ./obj/main.o
 	${CC} -o ${OUT} ./obj/*.o
 
-./obj/main.o: ./obj/input.o ./obj/shapes.o ./obj/nums.o ./obj/color.o ./obj/boxs.o ./src/main.c ./obj/string.o
+./obj/main.o: ./obj/labels.o ./obj/input.o ./obj/shapes.o ./obj/nums.o ./obj/color.o ./obj/boxs.o ./src/main.c ./obj/string.o
 	${CC} -c -o ./obj/main.o ./src/main.c
 
 ./obj/string.o: ./src/string.c
@@ -30,6 +30,9 @@ ${OUT}: ./obj/main.o
 
 ./obj/input.o: ./src/input.c
 	${CC} -c -o ./obj/input.o ./src/input.c
+
+./obj/labels.o: ./src/labels.c
+	${CC} -c -o ./obj/labels.o ./src/labels.c
 
 
 build:
