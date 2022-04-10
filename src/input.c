@@ -30,7 +30,7 @@ char* options (char* opts, struct Color boxc, struct Color textc)
 
 	int c = 0;
 	size_t p = 1;
-	while (c != 'q')
+	while (c != 'q' && c != '\r')
 	{
 		printf(REFRESH);
 
@@ -44,7 +44,6 @@ char* options (char* opts, struct Color boxc, struct Color textc)
 		{
 			data = malloc(strlen(sp->data[p-1]) * sizeof(char));
 			strcpy(data, sp->data[p-1]);
-			break;
 		}
 
 
