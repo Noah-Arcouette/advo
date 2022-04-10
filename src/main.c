@@ -51,8 +51,9 @@ int main ()
 	printf(SETUP);
 	printf(REFRESH);
 
-	scolor(text);
-	cirText("Usage:\nW: up\nS: down\nQ: Quit\nPress anything to continue.\n", box, text);
+	sboxNum("Moon\nDesert\nDoxy\n", text, box);
+
+	cirText("Usage:\nW: up\nS: down\nQ: Quit\nEnter: Select\nPress anything to continue.\n", box, text);
 
 	keypress();
 
@@ -60,7 +61,7 @@ int main ()
 
 
 	printf(REFRESH);
-	
+
 	scolor(text);
 	printf("%s\n", op);
 

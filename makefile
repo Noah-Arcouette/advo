@@ -1,7 +1,6 @@
 CC      = gcc -Wall -Wextra -O0 -g -I./inc
 CCBUILD = gcc -O3 -I./inc
 OUT     = ./bin/AO
-OUTD    = ./bin/libadvo.so
 OUTA    = ./bin/libadvo.a
 OUTH    = advo.h
 
@@ -33,19 +32,7 @@ ${OUT}: ./obj/main.o
 	${CC} -c -o ./obj/input.o ./src/input.c
 
 
-
-build_d:
-	${CCBUILD} --shared -o ${OUTD} \
-	./src/boxs.c \
-	./src/color.c \
-	./src/nums.c \
-	./src/string.c \
-	./src/input.c \
-	./src/shapes.c \
-
-	strip -s ${OUTD}
-
-build_a:
+build:
 	${CCBUILD} -c -o ./obj/boxs.o ./src/boxs.c
 	${CCBUILD} -c -o ./obj/color.o ./src/color.c
 	${CCBUILD} -c -o ./obj/nums.o ./src/nums.c
@@ -70,14 +57,7 @@ configure:
 	mkdir -p ./obj ./bin
 
 
-install_d: configure build_d
-	chown root:root ${OUTD}
-	chmod a+x ${OUTD}
-	mv ${OUTD} /usr/lib/libadvo.so
-
-	cp ./inc/ao.h /usr/include/${OUTH}
-
-install_a: configure build_a
+install: configure build_a
 	chown root:root ${OUTA}
 	chmod a+x ${OUTA}
 	mv ${OUTA} /usr/lib/libadvo.a
@@ -85,7 +65,7 @@ install_a: configure build_a
 	cp ./inc/ao.h /usr/include/${OUTH}
 
 uninstall:
-	rm /usr/lib/libadvo.so /usr/lib/libadvo.a -f
+	rm /usr/lib/libadvo.a -f
 
 	rm /usr/include/${OUTH}
 

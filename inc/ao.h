@@ -16,6 +16,7 @@
 #define __AO_H__
 
 #include <stdint.h>
+#include <stddef.h>
 
 #define RESET   "\x1b[?25h\x1b[?47l"
 #define REFRESH "\x1b[2J\x1b[H"
