@@ -21,6 +21,8 @@ int keypress()
 
 char* options (char* opts, struct Color boxc, struct Color textc)
 {
+	printf(REFRESH);
+	
 	strarr* sp = split(opts, '\n');
 
 	const size_t larg = biggest(sp);
@@ -30,9 +32,8 @@ char* options (char* opts, struct Color boxc, struct Color textc)
 
 	int c = 0;
 	size_t p = 1;
-	while (c != 'q' && c != '\r')
+	while (c != 'q')
 	{
-		printf(REFRESH);
 
 		if (c == 'w' && (p-1) > 0)
 			p--;
@@ -44,6 +45,7 @@ char* options (char* opts, struct Color boxc, struct Color textc)
 		{
 			data = malloc(strlen(sp->data[p-1]) * sizeof(char));
 			strcpy(data, sp->data[p-1]);
+			break;
 		}
 
 
@@ -60,6 +62,8 @@ char* options (char* opts, struct Color boxc, struct Color textc)
 		}
 
 		c = keypress();
+
+		printf(REFRESH);
 	}
 
 	freesplit(sp);
