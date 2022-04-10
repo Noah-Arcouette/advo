@@ -18,6 +18,12 @@
 #include "ao.h"
 #include "string.h"
 
+#include <unistd.h>
+#include <signal.h>
+#include <termios.h>
+
+extern size_t strlen (const char* __s);
+
 #define VLINE "│"
 #define HLINE "─"
 #define TLC   "┌"
@@ -29,23 +35,40 @@
 #define CBLC  "╰"
 #define CBRC  "╯"
 
+void quit (int)
+{
+	printf(RESET);
+	exit(1);
+}
+
 int main ()
 {
-	struct Color c2 = COLOR_RGB_FG(50, 200, 150);
-	struct Color c = COLOR_BOLD_RGB_FG(255, 100, 255);
+	signal(SIGINT, quit);
 
- 	cirNum("\
-File:  ./README.md\n\
-Style: Moon\n\
-hi\n\
-hi\n\
-hi\n\
-hi\n\
-hi\n\
-hi\n\
-hi\n\
-hi\n\
-", c, c2);
+	struct Color text = COLOR_RGB_FG(50, 200, 150);
+	struct Color box  = COLOR_BOLD_RGB_FG(255, 100, 255);
+
+	printf(SETUP);
+	printf(REFRESH);
+
+	scolor(text);
+	cirText("Usage:\nW: up\nS: down\nQ: Quit\nPress anything to continue.\n", box, text);
+
+	keypress();
+
+	char* op = options("Moon\nDesert\nDoxy\n", text, box);
+
+
+	printf(REFRESH);
+	
+	scolor(text);
+	printf("%s\n", op);
+
+	free(op);
+
+	printf("Good By.\n");
+
+	printf(RESET);
 
 	return 0;
 }

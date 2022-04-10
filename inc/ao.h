@@ -17,6 +17,10 @@
 
 #include <stdint.h>
 
+#define RESET   "\x1b[?25h\x1b[?47l"
+#define REFRESH "\x1b[2J\x1b[H"
+#define SETUP   "\x1b[?25l\x1b[?47h"
+
 #define __COLOR_TYPE_RGB   0b1
 #define __COLOR_BACKGROUND 0b10
 #define __COLOR_BOLD       0b100
@@ -54,5 +58,14 @@ void sboxText (char*, struct Color, struct Color);
 void boxNum  (char*, struct Color, struct Color);
 void sboxNum (char*, struct Color, struct Color );
 void cirNum  (char*, struct Color, struct Color);
+
+void line (char*, size_t, struct Color, struct Color);
+
+#ifdef __linux__
+	int keypress ();
+	char* options (char*, struct Color, struct Color);
+#else
+#	warning "Not in linux options and keypress are not defined"
+#endif
 
 #endif

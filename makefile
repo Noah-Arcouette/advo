@@ -11,7 +11,7 @@ all: ${OUT}
 ${OUT}: ./obj/main.o
 	${CC} -o ${OUT} ./obj/*.o
 
-./obj/main.o: ./obj/nums.o ./obj/color.o ./obj/boxs.o ./src/main.c ./obj/string.o
+./obj/main.o: ./obj/input.o ./obj/shapes.o ./obj/nums.o ./obj/color.o ./obj/boxs.o ./src/main.c ./obj/string.o
 	${CC} -c -o ./obj/main.o ./src/main.c
 
 ./obj/string.o: ./src/string.c
@@ -26,6 +26,12 @@ ${OUT}: ./obj/main.o
 ./obj/nums.o: ./src/nums.c
 	${CC} -c -o ./obj/nums.o ./src/nums.c
 
+./obj/shapes.o: ./src/shapes.c
+	${CC} -c -o ./obj/shapes.o ./src/shapes.c
+
+./obj/input.o: ./src/input.c
+	${CC} -c -o ./obj/input.o ./src/input.c
+
 
 
 build_d:
@@ -33,7 +39,9 @@ build_d:
 	./src/boxs.c \
 	./src/color.c \
 	./src/nums.c \
-	./src/string.c
+	./src/string.c \
+	./src/input.c \
+	./src/shapes.c \
 
 	strip -s ${OUTD}
 
@@ -42,12 +50,16 @@ build_a:
 	${CCBUILD} -c -o ./obj/color.o ./src/color.c
 	${CCBUILD} -c -o ./obj/nums.o ./src/nums.c
 	${CCBUILD} -c -o ./obj/string.o ./src/string.c
+	${CCBUILD} -c -o ./obj/shapes.o ./src/shapes.c
+	${CCBUILD} -c -o ./obj/input.o ./src/input.c
 
 	ar rcs ${OUTA} \
 	./obj/boxs.o \
 	./obj/color.o \
 	./obj/nums.o \
-	./obj/string.o
+	./obj/string.o \
+	./obj/input.o \
+	./obj/shapes.o
 
 # 	strip -s ${OUTA}
 
